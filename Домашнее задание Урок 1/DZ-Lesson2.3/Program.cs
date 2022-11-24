@@ -30,7 +30,7 @@ numberC = int.Parse(Console.ReadLine());
 
 
 
-if (numberA <= Math.Pow(number, 2) && numberB <= Math.Pow(number, 2) && numberC <= Math.Pow(number, 6))
+/*if (numberA <= Math.Pow(number, 2) && numberB <= Math.Pow(number, 2) && numberC <= Math.Pow(number, 6))
 {
 	int k = numberA * numberB;
 		
@@ -42,4 +42,13 @@ if (numberA <= Math.Pow(number, 2) && numberB <= Math.Pow(number, 2) && numberC 
 	{
 		Console.WriteLine("No!!!");
 	}
+}*/
+
+if (numberA * numberB == numberC)
+{
+	Console.WriteLine("YES!!!!");
+}
+else
+{
+	Console.WriteLine("No!!!");
 }
