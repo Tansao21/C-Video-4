@@ -10,7 +10,7 @@ int count = num % 10;
 
 do
 {
-	sum = sum + count;
+	sum += count;
 	num= num / 10;
 	i++;
 } while (i < num);

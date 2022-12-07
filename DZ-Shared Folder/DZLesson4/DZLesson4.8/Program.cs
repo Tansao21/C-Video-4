@@ -1,5 +1,7 @@
 ﻿//Составить программу возведения натурального числа в квадрат, учитывая следующую закономерность.
 
+using System.Diagnostics.CodeAnalysis;
+
 int num = 0;
 double z = 0;
 Console.Write("Введи число: ");
@@ -15,3 +17,12 @@ Console.WriteLine(z);
 
 
 
+/*int i = 1;
+int kn = 2 * num - 1;
+int sum = 0;
+while (i < kn)
+{
+	sum += i;
+	i += 2;
+}
+Console.WriteLine(sum);*/
