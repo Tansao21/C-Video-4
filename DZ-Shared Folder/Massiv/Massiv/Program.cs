@@ -26,9 +26,9 @@ for (int i = 0; i < 20; i++) Console.WriteLine(massiv[i]);*/
 
 //Составить программу вывода на экран любого элемента массива по индексу. С этим заданием не уверен что праильно понял как решать!!!!!!!
 
-/*int[] massis = {1,2,3,4,5,6,7,8,9};
+int[] massis = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
- Console.WriteLine(massis[8]);*/
+Console.WriteLine(massis[8]);
 
 
 

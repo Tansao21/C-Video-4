@@ -37,20 +37,18 @@ for (int i = 0; i < mas.Length; i++)
 //Дан массив вещественных чисел. Каждый элемент, больший 10, заменить его квадратным корнем.
 
 
-int[] mas = { 0, 2, 3, 2, 12, 3, 45, 5, 70, 9, 100 };
-double num = 0;
+/*double [] mas = { 0, 2, 3, 2, 12, 3, 45, 5, 70, 9, 100 };
 
 
-
-/*for (int i = 0; i < mas.Length; i++)
+for (int i = 0; i < mas.Length; i++)
 {
 	if (mas[i] > 10)
 	{
-	 num = Math.Sqrt(mas[i]);
-	Console.WriteLine($"{i} {num}");
+		mas[i] = (double)Math.Sqrt(mas[i]);
 	}
-}*/
-//for (int i = 0; i < mas.Length; i++) Console.WriteLine($"{i} { mas[i]}");
+}
+
+for (int i = 0; i < mas.Length; i++) Console.WriteLine($"{i} { mas[i]}");*/
 
 
 // Дан массив. Найти: Сумму элементов массива, значение которыфх не привышает 20.
@@ -71,10 +69,10 @@ for (int i = 0; i < mas.Length; i++)
 int rost;
 int i = 0;
 int countStudent = 0;
-int[] rostStudent = new int [5];
+int[] rostStudent = new int[5];
 
 Console.WriteLine("Введите рост средний: ");
-rost= int.Parse(Console.ReadLine());
+rost = int.Parse(Console.ReadLine());
 
 
 do
@@ -84,9 +82,9 @@ do
 
 	if (rostStudent[i] < rost)
 	{
-		countStudent ++;
+		countStudent++;
 	}
 	i++;
 } while (i < 5);
 
-Console.WriteLine($" Колитчество учиников с ростом не привышает {rost} - {countStudent}");
+Console.WriteLine($" Колитчество учиников с ростом {rost} не привышает количества - {countStudent}");
