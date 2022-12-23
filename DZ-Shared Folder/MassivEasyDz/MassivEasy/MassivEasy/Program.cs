@@ -177,7 +177,7 @@ int numA = 11;*/
 
 // Известен рост 30 учеников школы. Сколько из них имеет рост больше 170? Можно ли сформировать баскедбольную команду ( в команде должно быть не менее пяти человек ростом больше 170см)?
 
-int[] studets = new int[6];
+/*int[] studets = new int[6];
 int pipol = 5;
 int height = 170;
 int count = 0;
@@ -190,9 +190,7 @@ for (int i = 0;i < studets.Length; i++)
 
 	if (height < studets[i])
 	{
-		count ++;
-		Console.WriteLine(count);
-
+		count++;
 	}
 }
 	if (pipol == count)
@@ -202,4 +200,7 @@ for (int i = 0;i < studets.Length; i++)
 	else
 	{
 		Console.WriteLine("Команду не собрать!");
-	}
+	}*/
+
+
+// У МЕНЯ УШЛО 2 ЧАСА НА РЕШЕНИЕ 6 ЗАДАЧЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
