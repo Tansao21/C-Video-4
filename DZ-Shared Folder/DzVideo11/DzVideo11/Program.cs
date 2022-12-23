@@ -193,81 +193,8 @@ do
 }*/
 
 
+
+
 // Крестики нолики
 
-using System;
-
-namespace ConsoleApplication55
-{
-	class Program
-	{
-
-		enum Cell
-		{
-			СrossX,
-			ZeroO
-		}
-		enum Step
-		{
-			UserOne,
-			UserTwo
-		}
-		static void Main(string[] args)
-		{
-
-			#region Создание поля игры
-			int fieldSize = 3;
-
-			Cell[,]  fildOne = new Cell[fieldSize, fieldSize];
-
-			int coordI, coordJ;
-			bool inputResutCorrdI, inputResutCorrdJ;
-
-			Step currentStepOne = Step.UserOne;	
-			Step currentStepTwo = Step.UserTwo;	
-			#endregion
-
-			#region Заполнение полей пустотой
-			for (int i = 0; i < fieldSize; i++)
-			{
-				for (int j = 0; j < fieldSize; j++)
-				{
-					fildOne[i, j] = Cell.СrossX;
-				}
-			}
-			#endregion
-
-			#region Игравой цикл
-			switch (currentStepOne)
-			{
-				case Step.UserOne:
-					Console.WriteLine("USER STEP NOW");
-					do
-					{
-						Console.Write("Input coord I: ");
-						inputResutCorrdI = int.TryParse(Console.ReadLine(), out coordI);
-
-						Console.Write("Input coord J: ");
-						inputResutCorrdJ = int.TryParse(Console.ReadLine(), out coordJ);
-
-					} while (inputResutCorrdI == false || inputResutCorrdJ == false || coordI - 1 < 0 || coordI - 1 > fieldSize - 1 || coordJ - 1 < 0 || coordJ - 1 > fieldSize - 1);
-
-					if (fildOne[coordI - 1, coordJ - 1] == Cell.ZeroO)
-					{
-						fildOne[coordI - 1, coordJ - 1] = Cell.СrossX;
-					}
-					else if (fildOne[coordI - 1, coordJ - 1] == Cell.СrossX)
-					{
-						fildOne[coordI - 1, coordJ - 1] = Cell.ZeroO;
-						currentStepOne = Step.UserTwo;
-					}
-					break;
-				default:
-					break;
-			}
-			#endregion
-		}
-
-
-}
-}
+// не могу сделать крестики нолики не понимаю что к чему даже подсматривая код с морского боя((((!
