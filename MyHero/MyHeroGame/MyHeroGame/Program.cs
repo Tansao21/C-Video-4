@@ -32,7 +32,7 @@ while (true)
 	colsM = random.Next((int)Constants.MinCols, (int)Constants.MaxCols - 1);
 
 
-	field= new Cell[rowsN, colsM];
+	field = new Cell[rowsN, colsM];
 
 	for (int i = 0; i < rowsN; i++)  //вывод пустых полей
 	{
@@ -44,10 +44,8 @@ while (true)
 
 	for (int i = 0; i < rowsN; i++) // вывод границ
 	{
-		for (int j = 0; j < colsM; j++)
-		{
-			field[i, j] = Cell.Bound;
-		}
+		field[i, 0] = Cell.Bound;
+		field[i, colsM - 1] = Cell.Bound;
 	}
 
 	for (int j = 0; j < colsM; j++) // задали границам карайнии точки
@@ -59,7 +57,11 @@ while (true)
 
 	// Задаем начальные точки появления героя
 	iHero = (int)Constants.StartHeroI;
-	jHero= (int)Constants.StartHeroJ;
+	jHero = (int)Constants.StartHeroJ;
+
+	// Задаем стартовые точки собаки
+	int iDog = (int)Constants.StartDodI;
+	int jDog = (int)Constants.StartDodJ;
 
 	//Создаем портал
 
@@ -73,20 +75,51 @@ while (true)
 
 	field[iPortal, jPortal] = Cell.Portal;
 
+
 	//Создаем количество преград
-	int countWall = (int)((rowsN- 2) * (colsM - 2) * countWallNumb / 100.0);
+	int countWall = (int)((rowsN - 2) * (colsM - 2) * countWallNumb / 100.0);
 	for (int i = 0; i < countWall; i++)
 	{
 		int iWall, jWall;
 		do
 		{
-			iWall = random.Next(1,rowsN - 1);
-			jWall = random.Next(1,colsM - 1);
-
+			iWall = random.Next(1, rowsN - 1);
+			jWall = random.Next(1, colsM - 1);
 		} while (iWall == iHero && jWall == jHero || field[iWall, jWall] == Cell.Portal || field[iWall, jWall] == Cell.Wall);
 
 		field[iWall, jWall] = Cell.Wall;
 	}
+
+	//
+	bool dog = true;
+	while (dog)
+	{
+		Console.Clear();
+
+		Console.ResetColor();
+
+
+		Console.WriteLine($"Level Game = {levelGame}");
+
+		for (int i = 0; i < rowsN; i++)
+		{
+			for (int j = 0; j < colsM; j++)
+			{
+				if (i == iHero && j == jHero)
+				{
+					Console.ForegroundColor = ConsoleColor.Blue;
+					Console.WriteLine((char)Constants.DogSkin);
+				}
+				Console.Write((char)field[i, j]);
+			}
+			Console.WriteLine();
+		}
+		dog = false;
+	}
+
+	//
+
+
 	// поставили флажок как истина
 	hero = true;
 	while (hero)
@@ -94,9 +127,9 @@ while (true)
 		Console.Clear(); 
 
 		Console.ResetColor();
-	}
+	
 
-	Console.WriteLine($"Level Game = {levelGame}");
+		Console.WriteLine($"Level Game = {levelGame}");
 
 	for (int i = 0; i < rowsN; i++)
 	{
@@ -137,7 +170,7 @@ while (true)
 			if (field[iHero, jHero - 1] == Cell.Empty || field[iHero, jHero - 1] == Cell.Portal)
 			{
 				jHero--;
-			}
+				}
 
 			break;
 
@@ -145,7 +178,7 @@ while (true)
 			if (field[iHero - 1, jHero] == Cell.Empty || field[iHero - 1, jHero] == Cell.Portal)
 			{
 				iHero--;
-			}
+				}
 
 			break;
 
@@ -153,7 +186,7 @@ while (true)
 			if (field[iHero, jHero + 1] == Cell.Empty || field[iHero, jHero + 1] == Cell.Portal)
 			{
 				jHero++;
-			}
+				}
 
 			break;
 
@@ -177,6 +210,7 @@ while (true)
 		countWallNumb += 5;
 		hero = false;
 	}
+}
 }
 
 

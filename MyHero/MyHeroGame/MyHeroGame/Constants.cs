@@ -18,6 +18,10 @@ namespace MyHeroGame
 		StartHeroJ = 1,
 
 		HeroSkin = 'H',
+		DogSkin = '@',
+
+		StartDodI = 4, 
+		StartDodJ = 5,
 
 		WallCount = 2,
 	}
