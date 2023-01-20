@@ -43,31 +43,32 @@ void OutputCasinoArray(int[] casino)
 	}
 }
 
-int ThreeSeven(int[] casino, int numRubNew, int numRub)
+int ThreeSeven(int[] casino, int numRub)
 {
-	 numRubNew = 0;
+	 int numRubNew = 0;
 
 	if (casino[0] == 7 && casino[1] == 7 && casino[2] == 7)
 	{
 		numRubNew = numRub * 100;
 	}
-	return numRubNew;
+	return  numRubNew;
 }
 
-int ThreeSix(int[] casino, int numRubOne, int numRub)
+int ThreeSix(int[] casino,  int numRub)
 {
-	numRubOne = 0;
+	int numRubOne = 0;
 
 	if (casino[0] == 6 && casino[1] == 6 && casino[2] == 6)
 	{
 		numRubOne = numRub * 100;
 	}
-	return numRubOne;
+	return  numRubOne;
 }
 
-int DoubleСombination(int[] casino, int numRubTwo, int numRub)
+int DoubleСombination(int[] casino, int numRub)
 {
-	numRubTwo = 0;
+	int numRubTwo = 0;
+	int num = 5;
 	if (casino[0] == 9 && casino[1] == 9 || casino[1] == 9 && casino[2] == 9 ||
 			casino[0] == 8 && casino[1] == 8 || casino[1] == 8 && casino[2] == 8 ||
 			casino[0] == 7 && casino[1] == 7 || casino[1] == 7 && casino[2] == 7 ||
@@ -78,54 +79,50 @@ int DoubleСombination(int[] casino, int numRubTwo, int numRub)
 			casino[0] == 2 && casino[1] == 2 || casino[1] == 2 && casino[2] == 2 ||
 			casino[0] == 1 && casino[1] == 1 || casino[1] == 1 && casino[2] == 1)
 	{
-		numRubTwo = numRub * 5;
+		numRubTwo = numRub * num;
 	}
-	return numRubTwo;
+	return  numRubTwo;
 }
 
 
-void CasinoGame(int[] casino, int numRubNew, int numRubOne, int numRubTwo, int numRub)
+void CasinoGame(int[] casino, int numRub) 
 {
-	int userBillNew = 0;
-	userBill -= numRub;
-
 	for (int i = 0; i < casino.Length; i++)
 	{
-		ThreeSeven( casino,  numRubNew,  numRub);
-		ThreeSix(casino, numRubOne,  numRub);
-		DoubleСombination(casino, numRubTwo,  numRub);
+		ThreeSeven( casino, numRub);
+		ThreeSix(casino, numRub);
+		DoubleСombination(casino, numRub);
+	userBill -= numRub;
 	}
+	Console.WriteLine($"Ваш счет: {userBill}");
 	Console.WriteLine();
 }
 
-void Output(int[] casino, int numRubNew, int numRubOne, int numRubTwo, int numRub)
+void Output(int[] casino,  int numRub)
 {
-	ThreeSeven(casino, numRubNew, numRub);
-	ThreeSix(casino, numRubOne, numRub);
-	DoubleСombination(casino, numRubTwo, numRub);
-	if (ThreeSeven(casino, numRubNew,  numRub) > 0)
+	if (ThreeSeven(casino, numRub) > 0)
 	{
 		Console.Write("Джек под! Три топора!!!");
-		Console.WriteLine($"Ваш выигрыш составил: {ThreeSeven(casino, numRubNew,  numRub)} \n");
-		userBill += ThreeSeven(casino, numRubNew,  numRub);
+		Console.WriteLine($"Ваш выигрыш составил: {ThreeSeven(casino, numRub)} \n");
+		userBill += ThreeSeven(casino, numRub);
 	}
 
-	if (ThreeSix(casino, numRubOne,  numRub) > 0)
+	if (ThreeSix(casino, numRub) > 0)
 	{
 		Console.Write("Джек под! Число сатаны!!!");
-		Console.WriteLine($"Ваш выигрыш составил: {ThreeSix(casino, numRubOne,  numRub)}\n");
-		userBill += ThreeSix(casino, numRubOne,  numRub);
+		Console.WriteLine($"Ваш выигрыш составил: {ThreeSix(casino, numRub)}\n");
+		userBill += ThreeSix(casino, numRub);
 	}
 
-	if (DoubleСombination(casino, numRubTwo, numRub) > 0)
+	if (DoubleСombination(casino, numRub) > 0) //(DoubleСombination(casino, numRubTwo, numRub) > 0)
 	{
 		Console.WriteLine("Мини выиграш!");
 		Console.WriteLine("----------------");
-		Console.Write($"Ваш выигрыш составил: {DoubleСombination(casino, numRubTwo,  numRub)}\n");
-		userBill += DoubleСombination(casino, numRubTwo,  numRub);
+		Console.Write($"Ваш выигрыш составил: {DoubleСombination(casino, numRub)}\n");  //DoubleСombination(casino,  numRubTwo,  numRub)}\n"
+		userBill += DoubleСombination(casino, numRub);
 	}
 
-	Console.Write($"Ваш счет: {userBill}\n");
+	
 	Console.Write($"Для продолжения нажмите Enter!\n");
 	Console.ReadLine();
 	Console.Clear();
@@ -145,7 +142,6 @@ void ExsitGame ()
 	bool toGo = true;
 	if (userBill == 0)
 	{
-		
 		Console.Write("----------------");
 		Console.WriteLine("Ваш баланс  0, пополните!");
 		toGo = false;
@@ -157,15 +153,14 @@ void ExsitGame ()
 
 do
 {
-
 	CasinoArray(casino);
 	OutputCasinoArray(casino);
-	CasinoGame(casino, numRubNew, numRubOne, numRubTwo, numRub);
-	Output(casino, numRubNew, numRubOne, numRubTwo, numRub);   //numRubNew, numRubOne, numRubTwo,numRub
+	CasinoGame(casino, numRub);
+	Output(casino, numRub);
 	GameNew(numRub);
 	InputNumRub();
 	ExsitGame();
-} while (true);
+} while (!true);
 
 
 
