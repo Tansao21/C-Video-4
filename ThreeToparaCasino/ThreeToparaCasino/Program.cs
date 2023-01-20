@@ -22,7 +22,7 @@ int InputNumRub()
 	}
 	return numRub;
 }
-int numRub = InputNumRub();
+int numRub = InputNumRub(); 
 
 int[] casino = new int[3];
 
@@ -68,7 +68,6 @@ int ThreeSix(int[] casino,  int numRub)
 int DoubleСombination(int[] casino, int numRub)
 {
 	int numRubTwo = 0;
-	int num = 5;
 	if (casino[0] == 9 && casino[1] == 9 || casino[1] == 9 && casino[2] == 9 ||
 			casino[0] == 8 && casino[1] == 8 || casino[1] == 8 && casino[2] == 8 ||
 			casino[0] == 7 && casino[1] == 7 || casino[1] == 7 && casino[2] == 7 ||
@@ -79,11 +78,10 @@ int DoubleСombination(int[] casino, int numRub)
 			casino[0] == 2 && casino[1] == 2 || casino[1] == 2 && casino[2] == 2 ||
 			casino[0] == 1 && casino[1] == 1 || casino[1] == 1 && casino[2] == 1)
 	{
-		numRubTwo = numRub * num;
+		numRubTwo = numRub * 5;
 	}
 	return  numRubTwo;
 }
-
 
 void CasinoGame(int[] casino, int numRub) 
 {
@@ -92,8 +90,9 @@ void CasinoGame(int[] casino, int numRub)
 		ThreeSeven( casino, numRub);
 		ThreeSix(casino, numRub);
 		DoubleСombination(casino, numRub);
-	userBill -= numRub;
 	}
+	userBill -= numRub;
+
 	Console.WriteLine($"Ваш счет: {userBill}");
 	Console.WriteLine();
 }
@@ -114,11 +113,11 @@ void Output(int[] casino,  int numRub)
 		userBill += ThreeSix(casino, numRub);
 	}
 
-	if (DoubleСombination(casino, numRub) > 0) //(DoubleСombination(casino, numRubTwo, numRub) > 0)
+	if (DoubleСombination(casino, numRub) > 0) 
 	{
 		Console.WriteLine("Мини выиграш!");
 		Console.WriteLine("----------------");
-		Console.Write($"Ваш выигрыш составил: {DoubleСombination(casino, numRub)}\n");  //DoubleСombination(casino,  numRubTwo,  numRub)}\n"
+		Console.Write($"Ваш выигрыш составил: {DoubleСombination(casino, numRub)}\n");  
 		userBill += DoubleСombination(casino, numRub);
 	}
 
@@ -128,23 +127,18 @@ void Output(int[] casino,  int numRub)
 	Console.Clear();
 }
 
-void GameNew(int numRub)
-{
-	if (numRub > userBill)
-	{
-		Console.WriteLine("Ставку больше лицевого счета произвести нельзя!!!");
-	}
-
-}
-
 void ExsitGame ()
 {
 	bool toGo = true;
-	if (userBill == 0)
+	if ( numRub > userBill)
 	{
-		Console.Write("----------------");
-		Console.WriteLine("Ваш баланс  0, пополните!");
-		toGo = false;
+		Console.WriteLine("\n Cтавка больше лицевого счета произвести нельзя!!!");
+		InputNumRub();
+	}
+	else if (userBill == 0) 
+	{
+		Console.WriteLine(" Недостаточно средств!");
+		InputNumRub();
 	}
 }
 
@@ -153,13 +147,13 @@ void ExsitGame ()
 
 do
 {
+	ExsitGame();
 	CasinoArray(casino);
 	OutputCasinoArray(casino);
 	CasinoGame(casino, numRub);
 	Output(casino, numRub);
-	GameNew(numRub);
+	
 	InputNumRub();
-	ExsitGame();
 } while (!true);
 
 
