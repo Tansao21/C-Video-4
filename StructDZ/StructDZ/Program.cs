@@ -18,8 +18,11 @@ void ResizeArray(ref Human[] humans, int newHumanLength)
 }
 #endregion
 
-#region MyRegion
-void AddArray( Human[] humans, Human human) 
+
+#region CRUD
+
+#region Add Array
+void AddArray(ref Human[] humans, Human human)
 {
 	if (humans == null)
 	{
@@ -31,39 +34,8 @@ void AddArray( Human[] humans, Human human)
 	}
 	humans[humans.Length - 1] = human;
 }
-
 #endregion
 
-#region CRUD
-
-#region Hat Tabls Шляпа таблицы
-void HatTabls(Human human)
-{
-	Console.WriteLine("{0, -3} {1,-12 } {2, -15} {3,-20} {4,-3} {5,-20}", human.Id, human.Name, human.Surname, human.DateOfBirth.ToShortDateString(), human.Age, human.Profession);
-}
-
-void PrintHatTabls(Human[] humans)
-{
-	Console.WriteLine("{0, -3} {1, -12 } {2, -15} {3, -12} {4, -11} {5, -20}", "ИД", "Имя", "Фамилия", "Дата рождения", "Возраст", "Профессия");
-
-	if (humans == null)
-	{
-		Console.WriteLine("Массив пустой!!!");
-	}
-	else if (humans.Length == 0)
-	{
-		Console.WriteLine("Массив пустой!!!");
-	}
-	else
-	{
-		for (int i = 0; i < humans.Length; i++)
-		{
-			HatTabls(humans[i]);
-		}
-	}
-	Console.WriteLine("--------------------------");
-}
-#endregion
 
 #region Filling in the table Заполнение таблицы
 
@@ -99,7 +71,6 @@ Human FillingTabls(Human[] humans, ref int id, bool isNewId)
 }
 #endregion
 
-
 #region Filling Задаем значения заполнения структуры
 Human Filling()
 {
@@ -114,6 +85,36 @@ Human Filling()
 	return human;
 }
 #endregion
+
+#region Hat Tabls Шляпа таблицы
+void HatTabls(Human human)
+{
+	Console.WriteLine("{0, -3} {1,-12} {2, -15} {3,-20} {4,-3} {5,-20}", human.Id, human.Name, human.Surname, human.DateOfBirth.ToShortDateString(), human.Age, human.Profession);
+}
+
+void PrintHatTabls(Human[] humans)
+{
+	Console.WriteLine("{0, -3} {1, -12 } {2, -15} {3, -12} {4, -11} {5, -20}", "ИД", "Имя", "Фамилия", "Дата рождения", "Возраст", "Профессия");
+
+	if (humans == null)
+	{
+		Console.WriteLine("Массив пустой!!!");
+	}
+	else if (humans.Length == 0)
+	{
+		Console.WriteLine("Массив пустой!!!");
+	}
+	else
+	{
+		for (int i = 0; i < humans.Length; i++)
+		{
+			HatTabls(humans[i]);
+		}
+	}
+	Console.WriteLine("--------------------------");
+}
+#endregion
+
 
 #region Menu Меню
 void SistemMenu()
@@ -140,6 +141,7 @@ int InputInt(string message)
 
 #endregion
 
+
 Human[] humans = null;
 
 bool humanList = true;
@@ -157,7 +159,7 @@ while (humanList)
 		case 1:
 			{
 				Human human = FillingTabls(humans, ref id, true);
-				AddArray( humans, human);
+				AddArray(ref humans, human);
 			}
 			break;
 		case 0:
@@ -168,7 +170,7 @@ while (humanList)
 			break;
 		default:
 			{
-				Console.WriteLine("Неизвестная команда!"); 
+				Console.WriteLine("Неизвестная команда!");
 			}
 			break;
 	}
