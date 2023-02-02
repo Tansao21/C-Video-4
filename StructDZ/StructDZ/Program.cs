@@ -16,6 +16,41 @@ void ResizeArray(ref Human[] humans, int newHumanLength)
 	}
 	humans = newHumansArray;
 }
+
+int InputInt(string message)
+{
+	bool inputResult;
+	int number;
+
+	do
+	{
+		Console.WriteLine(message);
+		inputResult = int.TryParse(Console.ReadLine(), out number);
+
+	} while (!inputResult);
+	return number;
+}
+
+DateTime InputDateTime(string message)
+{
+	bool inputResult;
+	DateTime dt;
+
+	do
+	{
+
+		Console.WriteLine(message);
+		inputResult = DateTime.TryParse(Console.ReadLine(), out dt);
+
+	} while (!inputResult);
+	return dt;
+}
+
+string InputString(string message)
+{
+	Console.WriteLine(message);
+	return Console.ReadLine();
+}
 #endregion
 
 
@@ -52,20 +87,15 @@ Human FillingTabls(Human[] humans, ref int id, bool isNewId)
 		human.Id = 0;
 	}
 
-	Console.WriteLine("Введите имя: ");
-	human.Name = Console.ReadLine();
+	human.Name = InputString("Введите имя: ");
 
-	Console.WriteLine("Введит фамилию: ");
-	human.Surname = Console.ReadLine();
+	human.Surname = InputString("Введит фамилию: "); 
 
-	Console.WriteLine("Введите дату рождения: ");
-	human.DateOfBirth = DateTime.Parse(Console.ReadLine());
+	human.DateOfBirth = InputDateTime("Введите дату рождения: ");
 
-	Console.WriteLine("Введите возраст: ");
-	human.Age = int.Parse(Console.ReadLine());
+	human.Age = InputInt("Введите возраст: ");
 
-	Console.WriteLine("Введите профессию: ");
-	human.Profession = Console.ReadLine();
+	human.Profession = InputString("Введите профессию: ");
 
 	return human;
 }
@@ -124,19 +154,6 @@ void SistemMenu()
 	Console.WriteLine("0. Выход");
 }
 
-int InputInt(string message)
-{
-	bool inputResult;
-	int number;
-
-	do
-	{
-		Console.WriteLine(message);
-		inputResult = int.TryParse(Console.ReadLine(), out number);
-
-	} while (!inputResult);
-	return number;
-}
 #endregion
 
 #endregion
