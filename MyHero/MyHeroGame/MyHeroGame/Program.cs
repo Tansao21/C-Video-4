@@ -90,34 +90,7 @@ while (true)
 		field[iWall, jWall] = Cell.Wall;
 	}
 
-	//
-	bool dog = true;
-	while (dog)
-	{
-		Console.Clear();
-
-		Console.ResetColor();
-
-
-		Console.WriteLine($"Level Game = {levelGame}");
-
-		for (int i = 0; i < rowsN; i++)
-		{
-			for (int j = 0; j < colsM; j++)
-			{
-				if (i == iHero && j == jHero)
-				{
-					Console.ForegroundColor = ConsoleColor.Blue;
-					Console.WriteLine((char)Constants.DogSkin);
-				}
-				Console.Write((char)field[i, j]);
-			}
-			Console.WriteLine();
-		}
-		dog = false;
-	}
-
-	//
+	
 
 
 	// поставили флажок как истина

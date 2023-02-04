@@ -8,11 +8,11 @@ namespace Draw
 {
 	public enum Constract
 	{
-		MinRows = 100,
-		MaxRows = 200,
+		MinRows = 10,
+		MaxRows = 20,
 
-		MinCols = 100,
-		MaxCols = 300,
+		MinCols = 10,
+		MaxCols = 30,
 
 		StartIPencil = 1,
 		StartJPencil = 1,
