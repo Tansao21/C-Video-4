@@ -1,160 +1,4 @@
-﻿/*using Draw;
-
-FieldDraw[,] Field(int rows, int cols)
-{
-	return new FieldDraw[rows, cols];
-}
-
-
-
-int Rows ()
-{
-	Console.WriteLine($"Введите количество строк по оси X: ");
-	int rows = int.Parse(Console.ReadLine());
-	return rows;
-}
-
-int Cols ()
-{
-	Console.WriteLine($"Введите количество столбцов по оси Y: ");
-	int cols = int.Parse(Console.ReadLine());
-	return cols;
-}
-
-void CreatingField(FieldDraw[,] field, int rows, int cols)  
-{
-  
-	 //field = new FieldDraw[rows, cols];
-
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			field[i, j] = FieldDraw.Empty;
-		}
-	}
-	
-	for (int i = 0; i < rows; i++)
-	{
-		field[i, 0] = FieldDraw.Bound;
-		field[i, cols - 1] = FieldDraw.Bound;
-	}
-
-	for (int j = 0; j < cols; j++)
-	{
-		field[0, j] = FieldDraw.Bound;
-		field[rows - 1, j] = FieldDraw.Bound;
-	}
-}
-
-static void ResetConsole()
-{
-	Console.Clear();
-	Console.ResetColor();
-}
-
-void FieldBoundaries(FieldDraw[,] field, int rows, int cols, int startIPencil, int startJPencil)
-{
-	ResetConsole();
-
-	//field = new FieldDraw[rows, cols];
-
-	for (int i = 0; i < rows; i++)
-	{
-		for (int j = 0; j < cols; j++)
-		{
-			if (i == startIPencil && j == startJPencil)
-			{
-				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.Write((char)Constract.PencilSkin);
-			}
-			else
-			{
-				switch (field[i, j])
-				{
-					case FieldDraw.Empty:
-						Console.ForegroundColor = ConsoleColor.Red;
-						break;
-					case FieldDraw.Bound:
-						Console.ForegroundColor = ConsoleColor.Green;
-						break;
-				}
-				Console.Write((char)field[i, j]);
-			}
-		}
-		Console.WriteLine();
-	}
-}
-
-void CursorMovement (FieldDraw[,] field, int startIPencil, int startJPencil)
-{
-	bool heroInAdventure = true;
-
-	ConsoleKey key = Console.ReadKey(false).Key;
-	switch (key)
-	{
-		case ConsoleKey.A:
-			if (field[startIPencil, startJPencil - 1] == FieldDraw.Empty )
-			{
-				startJPencil--;
-			}
-
-			break;
-
-		case ConsoleKey.W:
-			if (field[startIPencil - 1, startJPencil] == FieldDraw.Empty )
-			{
-				startIPencil--;
-			}
-
-			break;
-
-		case ConsoleKey.D:
-			if (field[startIPencil, startJPencil + 1] == FieldDraw.Empty )
-			{
-				startJPencil++;
-			}
-
-			break;
-
-		case ConsoleKey.S:
-			if (field[startIPencil + 1, startJPencil] == FieldDraw.Empty )
-			{
-				startIPencil++;
-
-			}
-
-			break;
-
-		case ConsoleKey.R:
-			heroInAdventure = false;
-			break;
-	}
-}
-
-
-
-	int rows =Rows();
-	int cols = Cols();
-
-	FieldDraw[,] field = Field(rows, cols);
-	
-	CreatingField(field, rows, cols);
-	
-	int startJPencil = (int)Constract.StartJPencil;
-	int startIPencil = (int)Constract.StartIPencil;
-
-while (true)
-{
-	FieldBoundaries(field, rows, cols,  startIPencil, startJPencil);
-	CursorMovement(field, startIPencil, startJPencil);
-}*/
-
-
-
-
-
-using Draw;
+﻿using Draw;
 using System;
 using System.Drawing;
 
@@ -204,6 +48,8 @@ void FillField(FieldDraw[,] field)
 	}
 }
 
+
+
 void FieldBoundaries(FieldDraw[,] field, int iPencil, int jPencil)
 {
 	int rows = field.GetLength(0);
@@ -238,6 +84,55 @@ void FieldBoundaries(FieldDraw[,] field, int iPencil, int jPencil)
 		}
 
 		Console.WriteLine();
+	}
+}
+
+
+void Zacrasca(FieldDraw[,] field, ColorDraw colors, ConsoleKey key)
+{
+	int rows = field.GetLength(0);
+	int cols = field.GetLength(1);
+
+	switch (key)
+	{
+		case ConsoleKey.Q:
+			if (colors.ColorOne == 'Q')
+			{
+				field[rows, cols] = FieldDraw.Empty;
+				Console.ForegroundColor = ConsoleColor.Green;
+			}
+			break;
+		case ConsoleKey.Z:
+			if (colors.ColorOne == 'Z')
+			{
+				field[rows, cols] = FieldDraw.Empty;
+				Console.ForegroundColor = ConsoleColor.Blue;
+			}
+			break;
+
+		case ConsoleKey.X:
+			if (colors.ColorOne == 'X')
+			{
+				field[rows, cols] = FieldDraw.Empty;
+				Console.ForegroundColor = ConsoleColor.Magenta;
+			}
+			break;
+		case ConsoleKey.C:
+			if (colors.ColorOne == 'C')
+			{
+				field[rows, cols] = FieldDraw.Empty;
+				Console.ForegroundColor = ConsoleColor.Yellow;
+			}
+			break;
+
+		case ConsoleKey.V:
+			if (colors.ColorOne == 'V')
+			{
+				field[rows, cols] = FieldDraw.Empty;
+				Console.ForegroundColor = ConsoleColor.Red;
+			}
+			break;
+
 	}
 }
 
@@ -282,7 +177,6 @@ void CursorMovement(FieldDraw[,] field, ColorDraw colors, ConsoleKey key, ref in
 
 		case ConsoleKey.Spacebar:
 			field[iPencil, jPencil] = FieldDraw.Bound;
-			Zacrasca(field, colors, key, ref iPencil, ref jPencil);
 			break;
 
 		case ConsoleKey.Backspace:
@@ -313,52 +207,6 @@ void InputMenu()
 	colors.ColorFive = 'V';
 } 
 
-void Zacrasca (FieldDraw[,] field,ColorDraw colors,ConsoleKey key, ref int iPencil, ref int jPencil)
-{
-	
-	switch (key)
-	{
-		case ConsoleKey.Q:
-			if (colors.ColorOne == 'Q')
-			{
-				field[iPencil, jPencil] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Green;
-			}
-			break;
-		case ConsoleKey.Z:
-			if (colors.ColorOne == 'Z')
-			{
-				field[iPencil, jPencil] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Blue;
-			}
-			break;
-
-		case ConsoleKey.X:
-			if (colors.ColorOne == 'X')
-			{
-				field[iPencil, jPencil] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Magenta;
-			}
-			break;
-		case ConsoleKey.C:
-			if (colors.ColorOne == 'C')
-			{
-				field[iPencil, jPencil] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Yellow;
-			}
-			break;
-
-		case ConsoleKey.V:
-			if (colors.ColorOne == 'V')
-			{
-				field[iPencil, jPencil] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Red;
-			}
-			break;
-
-	}
-}
-
 
 int rows = InputRows();
 int cols = InputCols();
@@ -377,10 +225,13 @@ while (true)
 {
 
 
+
 	FieldBoundaries(field, iPencil, jPencil);
+
 
 	ConsoleKey key = Console.ReadKey(false).Key;
 	CursorMovement(field, colors, key, ref iPencil, ref jPencil);
+	Zacrasca(field, colors, key);
 
-	//Zacrasca(field,colors, key, ref  iPencil, ref  jPencil);
+	
 }
