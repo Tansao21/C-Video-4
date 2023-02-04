@@ -6,6 +6,7 @@ FieldDraw[,] Field(int rows, int cols)
 }
 
 
+
 int Rows ()
 {
 	Console.WriteLine($"Введите количество строк по оси X: ");
@@ -20,10 +21,10 @@ int Cols ()
 	return cols;
 }
 
-void CreatingField(FieldDraw[,] field, int rows, int cols)
+void CreatingField(FieldDraw[,] field, int rows, int cols)  
 {
   
-	 field = new FieldDraw[rows, cols];
+	 //field = new FieldDraw[rows, cols];
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -32,7 +33,7 @@ void CreatingField(FieldDraw[,] field, int rows, int cols)
 			field[i, j] = FieldDraw.Empty;
 		}
 	}
-
+	
 	for (int i = 0; i < rows; i++)
 	{
 		field[i, 0] = FieldDraw.Bound;
@@ -56,7 +57,8 @@ void FieldBoundaries(FieldDraw[,] field, int rows, int cols, int startIPencil, i
 {
 	ResetConsole();
 
-	field = new FieldDraw[rows, cols];
+	//field = new FieldDraw[rows, cols];
+	Console.Write((char)FieldDraw.Empty);
 
 	for (int i = 0; i < rows; i++)
 	{
@@ -93,7 +95,7 @@ void CursorMovement (FieldDraw[,] field, int startIPencil, int startJPencil)
 	switch (key)
 	{
 		case ConsoleKey.A:
-			if (field[startIPencil, startJPencil - 1] == FieldDraw.Empty || field[startIPencil, startJPencil - 1] == FieldDraw.Empty)
+			if (field[startIPencil, startJPencil - 1] == FieldDraw.Empty )
 			{
 				startJPencil--;
 			}
@@ -101,7 +103,7 @@ void CursorMovement (FieldDraw[,] field, int startIPencil, int startJPencil)
 			break;
 
 		case ConsoleKey.W:
-			if (field[startIPencil - 1, startJPencil] == FieldDraw.Empty || field[startIPencil - 1, startJPencil] == FieldDraw.Empty)
+			if (field[startIPencil - 1, startJPencil] == FieldDraw.Empty )
 			{
 				startIPencil--;
 			}
@@ -109,7 +111,7 @@ void CursorMovement (FieldDraw[,] field, int startIPencil, int startJPencil)
 			break;
 
 		case ConsoleKey.D:
-			if (field[startIPencil, startJPencil + 1] == FieldDraw.Empty || field[startIPencil, startJPencil + 1] == FieldDraw.Empty)
+			if (field[startIPencil, startJPencil + 1] == FieldDraw.Empty )
 			{
 				startJPencil++;
 			}
@@ -117,7 +119,7 @@ void CursorMovement (FieldDraw[,] field, int startIPencil, int startJPencil)
 			break;
 
 		case ConsoleKey.S:
-			if (field[startIPencil + 1, startJPencil] == FieldDraw.Empty || field[startIPencil + 1, startJPencil] == FieldDraw.Empty)
+			if (field[startIPencil + 1, startJPencil] == FieldDraw.Empty )
 			{
 				startIPencil++;
 
@@ -129,29 +131,28 @@ void CursorMovement (FieldDraw[,] field, int startIPencil, int startJPencil)
 			heroInAdventure = false;
 			break;
 	}
-} 
+}
 
 
 
-
-while (true)
-{
 	int rows =Rows();
 	int cols = Cols();
-
+//FieldDraw[,] field = null;
 	FieldDraw[,] field = Field(rows, cols);
+	
+	CreatingField(field, rows, cols);
+	
+
 
 
 	int startJPencil = (int)Constract.StartJPencil;
 	int startIPencil = (int)Constract.StartIPencil;
+while (true)
+{
 
 	FieldBoundaries(field, rows, cols,  startIPencil, startJPencil);
-	CreatingField(field, rows, cols);
-
-
-
 
 	CursorMovement(field, startIPencil, startJPencil);
 
 }
-/*...юююююююююю.*/
+

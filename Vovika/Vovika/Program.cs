@@ -97,8 +97,8 @@ namespace PixelArt
 
 		static void PrintObjects(Cell[,] field, int xPix, int yPix) // отрисовка поля, пикселя, стен, пустот
 		{
-			//ResetConsole();
-
+			ResetConsole();
+			field = new Cell[xPix, yPix];
 			int xCols = field.GetLength(0);
 			int yRows = field.GetLength(1);
 
@@ -246,10 +246,12 @@ namespace PixelArt
 
 				int xPix = InitXPix();
 				int yPix = InitYPix();
+
 				PrintObjects(field, xPix, yPix);
-
-
 				InitField(field);
+
+
+
 				PrintMessage();
 				MovePix(field, xPix, yPix);
 				
