@@ -51,10 +51,10 @@ namespace PixelArt
 		{
 			return new Cell[yRows, xCols];
 		}
-		static void InitField(Cell[,] field) // задаём поле, границы поля по X(i) , Y (j)
+		static void InitField(Cell[,] field, int yRows, int xCols) // задаём поле, границы поля по X(i) , Y (j)
 		{
-			int yRows = field.GetLength(0);
-			int xCols = field.GetLength(1);
+			/*int yRows = field.GetLength(0);
+			int xCols = field.GetLength(1);*/
 
 			for (int i = 0; i < yRows; i++)
 			{
@@ -237,18 +237,18 @@ namespace PixelArt
 		{
 			bool play = true;
 
-		
-			while (play)
-			{
 				int yRows = InitRows();
 				int xCols = InitCols();
 				Cell[,] field = CreateField(yRows, xCols);
 
 				int xPix = InitXPix();
 				int yPix = InitYPix();
+		
+			while (play)
+			{
 
 				PrintObjects(field, xPix, yPix);
-				InitField(field);
+				InitField(field,  yRows,  xCols);
 
 
 
