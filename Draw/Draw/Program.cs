@@ -7,7 +7,10 @@ FieldDraw[,] CreateField(int rows, int cols)
 	return new FieldDraw[rows, cols];
 }
 
-
+ColorDraw[,] ColorsField(int rows, int cols)
+{
+	return new ColorDraw[rows, cols];
+}
 int InputRows()
 {
 	Console.WriteLine($"Введите количество строк по оси X: ");
@@ -50,7 +53,7 @@ void FillField(FieldDraw[,] field)
 
 
 
-void FieldBoundaries(FieldDraw[,] field, int iPencil, int jPencil)
+void FieldBoundaries(FieldDraw[,] field, ColorDraw [,] colors, int iPencil, int jPencil)
 {
 	int rows = field.GetLength(0);
 	int cols = field.GetLength(1);
@@ -69,7 +72,7 @@ void FieldBoundaries(FieldDraw[,] field, int iPencil, int jPencil)
 			}
 			else
 			{
-				switch (field[i, j])
+			/*	switch (field[i, j])
 				{
 					case FieldDraw.Empty:
 						Console.ForegroundColor = ConsoleColor.Red;
@@ -79,7 +82,10 @@ void FieldBoundaries(FieldDraw[,] field, int iPencil, int jPencil)
 						break;
 				}
 
-				Console.Write((char)field[i, j]);
+				Console.Write((char)field[i, j]);*/
+
+				Console.ForegroundColor = colors[i, j].color;
+				Console.Write((char)colors[i, j].symbol);
 			}
 		}
 
@@ -96,52 +102,48 @@ void Zacrasca(FieldDraw[,] field, ColorDraw colors, ConsoleKey key)
 	switch (key)
 	{
 		case ConsoleKey.Q:
-			if (colors.ColorOne == 'Q')
-			{
-				field[rows, cols] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Green;
-			}
+
+			field[rows, cols] = FieldDraw.BoundOne;
+			Console.ForegroundColor = ConsoleColor.Green;
+			
+		
 			break;
 		case ConsoleKey.Z:
-			if (colors.ColorOne == 'Z')
+			if (colors.color == ConsoleColor.Blue)
 			{
-				field[rows, cols] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Blue;
+				field[rows, cols] = FieldDraw.BoundOne;
 			}
 			break;
 
 		case ConsoleKey.X:
-			if (colors.ColorOne == 'X')
+			if (colors.color == ConsoleColor.Magenta)
 			{
-				field[rows, cols] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Magenta;
+				field[rows, cols] = FieldDraw.BoundOne;
 			}
 			break;
 		case ConsoleKey.C:
-			if (colors.ColorOne == 'C')
+			if (colors.color == ConsoleColor.Yellow)
 			{
-				field[rows, cols] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Yellow;
+				field[rows, cols] = FieldDraw.BoundOne;
 			}
 			break;
 
 		case ConsoleKey.V:
-			if (colors.ColorOne == 'V')
+			if (colors.color == ConsoleColor.Red)
 			{
-				field[rows, cols] = FieldDraw.Empty;
-				Console.ForegroundColor = ConsoleColor.Red;
+				field[rows, cols] = FieldDraw.BoundOne;
 			}
 			break;
 
 	}
 }
 
-void CursorMovement(FieldDraw[,] field, ColorDraw colors, ConsoleKey key, ref int iPencil, ref int jPencil)
+
+void CursorMovement(FieldDraw[,] field, ColorDraw[,] colors, ConsoleKey key, ref int iPencil, ref int jPencil)
 {
 	int rows = field.GetLength(0);
 	int cols = field.GetLength(1);
 
-	
 
 	switch (key)
 	{
@@ -176,12 +178,13 @@ void CursorMovement(FieldDraw[,] field, ColorDraw colors, ConsoleKey key, ref in
 			break;
 
 		case ConsoleKey.Spacebar:
-			field[iPencil, jPencil] = FieldDraw.Bound;
+			field[iPencil, jPencil] = FieldDraw.BoundOne;
 			break;
 
 		case ConsoleKey.Backspace:
 			field[iPencil, jPencil] = FieldDraw.Empty;
 			break;
+
 	}
 }
 
@@ -198,19 +201,11 @@ void InputMenu()
 	Console.ReadKey();
 }
 
- void ColorDrawInit(ColorDraw colors) 
-{
-	colors.ColorOne = 'Q';
-	colors.ColorTwo = 'Z';
-	colors.ColorThree = 'X';
-	colors.ColorFour = 'C';
-	colors.ColorFive = 'V';
-} 
+
 
 
 int rows = InputRows();
 int cols = InputCols();
-InputMenu();
 
 FieldDraw[,] field = CreateField(rows, cols);
 FillField(field);
@@ -218,20 +213,17 @@ FillField(field);
 int jPencil = (int)Constract.StartJPencil;
 int iPencil = (int)Constract.StartIPencil;
 
-ColorDraw colors = new ColorDraw();
-ColorDrawInit(colors);
 
+ColorDraw [,] colors = ColorsField(rows,cols);
+
+InputMenu();
 while (true)
 {
-
-
-
-	FieldBoundaries(field, iPencil, jPencil);
+	FieldBoundaries(field, colors, iPencil, jPencil);
 
 
 	ConsoleKey key = Console.ReadKey(false).Key;
-	CursorMovement(field, colors, key, ref iPencil, ref jPencil);
-	Zacrasca(field, colors, key);
 
-	
+	Zacrasca(field, colors, key);
+	CursorMovement(field, colors, key, ref iPencil, ref jPencil);
 }

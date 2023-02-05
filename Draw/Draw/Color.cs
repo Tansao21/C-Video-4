@@ -10,10 +10,13 @@ namespace Draw
 
 	struct ColorDraw
 	{
-		public int ColorOne;
-		public int ColorTwo;
-		public int ColorThree;
-		public int ColorFour;
-		public int ColorFive;
+		/*	public int ColorOne;
+			public int ColorTwo;
+			public int ColorThree;
+			public int ColorFour;
+			public int ColorFive;*/
+
+		public FieldDraw symbol;
+		public ConsoleColor color;
 	}
 }

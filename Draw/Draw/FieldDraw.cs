@@ -9,6 +9,7 @@ namespace Draw
 	public enum FieldDraw
 	{
 		Empty = '*',
-		Bound = 'x'
+		Bound = 'x',
+		BoundOne = 'v'
 	}
 }
